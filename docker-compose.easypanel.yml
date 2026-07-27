@@ -23,10 +23,12 @@ services:
       SECRET_KEY: ${SECRET_KEY:-change-me-in-production}
       ALGORITHM: HS256
       ACCESS_TOKEN_EXPIRE_MINUTES: 60
+      ADMIN_EMAIL: ${ADMIN_EMAIL:-preview@example.com}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-preview123}
     volumes:
       - upload-data-easypanel:/app/uploads
     ports:
-      - "8001:8000"
+      - "8457:8000"
     depends_on:
       db-easypanel:
         condition: service_healthy
@@ -36,7 +38,7 @@ services:
   frontend-easypanel:
     build: ./frontend
     ports:
-      - "3001:80"
+      - "3457:80"
     depends_on:
       - backend-easypanel
     volumes:
